@@ -71,6 +71,11 @@ fun NewScreen(state: SuperheroListingUIStates, onClick:()->Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = state.email, fontSize = 20.sp)
+
+        // The above one and below one are same but the below one will recompose everytime as it has the clickable modifier.
+        Text(modifier = Modifier.clickable {
+
+        }, text = state.email, fontSize = 20.sp)
         Button(onClick = {onClick() }) {
             Text(text = "Click Me", fontSize = 20.sp)
         }
