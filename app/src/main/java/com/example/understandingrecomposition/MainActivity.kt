@@ -32,7 +32,9 @@ class MainActivity : ComponentActivity() {
                     val state = viewModel.uiStates.collectAsState().value
 
                     Column {
-                        NewScreen(state = state)
+                        NewScreen(state = state){
+                            viewModel.changeEmail()
+                        }
 
                         Button(onClick = { viewModel.changeEmail() }) {
                             Text(text = "Change Email")
@@ -62,13 +64,16 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun NewScreen(state: SuperheroListingUIStates) {
+fun NewScreen(state: SuperheroListingUIStates, onClick:()->Unit) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = state.email, fontSize = 20.sp)
+        Button(onClick = {onClick() }) {
+            Text(text = "Click Me", fontSize = 20.sp)
+        }
         Text(text = state.loading.toString(), fontSize = 20.sp)
         Text(text = state.user.name, fontSize = 20.sp)
         Text(text = state.user.roll, fontSize = 20.sp)
