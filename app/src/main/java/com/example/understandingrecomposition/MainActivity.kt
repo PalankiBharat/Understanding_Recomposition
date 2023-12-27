@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -55,7 +56,14 @@ class MainActivity : ComponentActivity() {
                         Button(onClick = { viewModel.changelistRandomly() }) {
                             Text(text = "Change List Randomly")
                         }
+
+                        LazyColumn(modifier = Modifier.fillMaxSize(0.8f)){
+                            items(state.list.size){
+                                Text(text = state.list[it], fontSize = 25.sp )
+                            }
+                        }
                     }
+
 
                 }
             }
@@ -82,6 +90,6 @@ fun NewScreen(state: SuperheroListingUIStates, onClick:()->Unit) {
         Text(text = state.loading.toString(), fontSize = 20.sp)
         Text(text = state.user.name, fontSize = 20.sp)
         Text(text = state.user.roll, fontSize = 20.sp)
-        Text(text = "List = ${state.list}", fontSize = 20.sp)
+        //Text(text = "List = ${state.list}", fontSize = 20.sp)
     }
 }

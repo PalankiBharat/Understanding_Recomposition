@@ -30,7 +30,7 @@ class MyViewModel {
     fun changelistRandomly()
     {
         val list = arrayListOf<String>()
-       repeat(10){
+       repeat(30){
            list.add(randomString(5))
        }
         _uiStates.value = _uiStates.value.copy(list = list)
